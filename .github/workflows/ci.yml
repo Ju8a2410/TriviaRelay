@@ -18,6 +18,21 @@ on:
     tags: ['v*']
   pull_request:
 
+# app"). Tagging is the only way to cut a release — one path, so a hand-built APK can
+# never be the one people are updating to.
+on:
+  push:
+    branches: [main]
+    tags: ['v*']
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  # The checks themselves live in scripts/ci.sh, which is also what a developer runs
+  # locally. This workflow only installs toolchains, caches, and calls the script.
 permissions:
   contents: read
 
